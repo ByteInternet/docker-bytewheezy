@@ -1,18 +1,12 @@
 FROM tianon/debian:7.1
 MAINTAINER Allard Hoeve <allard@byte.nl>
 
-# make sure the package repository is up to date
-RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/99assumeyes
-RUN perl -pi -e 's/ftp.us.debian.org/ftp.nl.debian.org/g;' /etc/apt/sources.list
+ADD etc/apt/apt.conf.d/99assumeyes /etc/apt/apt.conf.d/99assumeyes
+ADD etc/apt/sources.list /etc/apt/sources.list
+ADD etc/apt/preferences /etc/apt/preferences
+ADD http://debian.byte.nl/repository/dists/Release.key /tmp/debian-release.key
+RUN apt-key add /tmp/debian-release.key
 
 RUN apt-get update
-RUN apt-get install curl && apt-get clean
+RUN apt-get install vim-nox git ack-grep procps net-tools curl devscripts && apt-get clean
 
-RUN echo "deb http://debian.byte.nl/repository/ wheezy main testing" >> /etc/apt/sources.list
-RUN (echo "Package: *"; echo "Pin: release a=byte-wheezy, c=main"; echo "Pin-Priority: 700";) >> /etc/apt/preferences
-RUN curl -s http://debian.byte.nl/repository/dists/Release.key | apt-key add -
-
-RUN apt-get update
-RUN apt-get dist-upgrade && apt-get clean
-
-RUN apt-get install vim-nox git ack-grep procps net-tools && apt-get clean
