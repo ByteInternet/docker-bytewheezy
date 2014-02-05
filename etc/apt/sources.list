@@ -1,0 +1,5 @@
+deb http://ftp.nl.debian.org/debian wheezy main
+deb http://debian.byte.nl/repository/ wheezy main testing
+
+deb-src http://ftp.nl.debian.org/debian wheezy main
+deb-src http://debian.byte.nl/repository/ wheezy main testing
