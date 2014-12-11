@@ -1,4 +1,4 @@
-FROM tianon/debian:7.1
+FROM debian:wheezy
 MAINTAINER Allard Hoeve <allard@byte.nl>
 
 ADD etc/apt/apt.conf.d/99assumeyes /etc/apt/apt.conf.d/99assumeyes

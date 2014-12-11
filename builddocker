@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker build -t staging-docker.byte.nl/prov/byte-debian:wheezy .
