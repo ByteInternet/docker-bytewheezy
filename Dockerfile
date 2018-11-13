@@ -8,5 +8,6 @@ ADD http://debian.byte.nl/repository/dists/Release.key /tmp/debian-release.key
 RUN apt-key add /tmp/debian-release.key
 
 RUN apt-get update
-RUN apt-get install vim-nox git ack-grep procps net-tools curl devscripts && apt-get clean
+RUN apt-get install aptitude
+RUN aptitude -y install vim-nox git ack-grep procps net-tools curl devscripts && apt-get clean
 
